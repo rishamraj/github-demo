@@ -2,23 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CUSTOMERS 100
-#define MAX_NAME_LENGTH 50
+#define MAX_CUSTOMERS 60
+#define MAX_NAME_LENGTH 20
 
 struct Customer {
-    char name[MAX_NAME_LENGTH];
-    int accountNumber;
-    double balance;
+    char name[20];             //creating structure for bank management
+    int accountNumber;         //framework of our project
+    float balance;
 };
 
 void createAccount(struct Customer bank[], int *numCustomers) {
     if (*numCustomers >= MAX_CUSTOMERS) {
-        printf("The bank is at maximum capacity. Cannot create more accounts.\n");
+        printf("The bank is at maximum capacity. Cannot create more accounts.Apologies for inconvinience. \n");
         return;
     }
 
     struct Customer newCustomer;
-    printf("Enter your name: ");
+    printf("Please enter your name: ");
     getchar();
     fgets(newCustomer.name, sizeof(newCustomer.name), stdin);
     newCustomer.name[strlen(newCustomer.name) - 1] = '\0'; // Remove trailing newline character
@@ -32,7 +32,7 @@ void createAccount(struct Customer bank[], int *numCustomers) {
     printf("Account created successfully!\n");
 }
 
-void deposit(struct Customer bank[], int numCustomers, int accountNumber, double amount) {
+void deposit(struct Customer bank[], int numCustomers, int accountNumber, float amount) {
     int found = 0;
 
     for (int i = 0; i < numCustomers; i++) {
@@ -97,14 +97,14 @@ int main() {
                 printf("Enter account number: ");
                 scanf("%d", &accountNumber);
                 printf("Enter the amount to deposit: ");
-                scanf("%lf", &amount);
+                scanf("%f", &amount);
                 deposit(bank, numCustomers, accountNumber, amount);
                 break;
             case 3:
                 printf("Enter account number: ");
                 scanf("%d", &accountNumber);
                 printf("Enter the amount to withdraw: ");
-                scanf("%lf", &amount);
+                scanf("%f", &amount);
                 withdraw(bank, numCustomers, accountNumber, amount);
                 break;
             case 4:
